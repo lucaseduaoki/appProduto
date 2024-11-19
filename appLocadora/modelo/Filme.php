@@ -21,7 +21,7 @@ class Filme extends Produto implements IProduto{
         $dados .= "Está disponível em meio físico: ". ($this -> uniFisica ? "Sim" : "Não")."\n";
         $dados .= "Está disponível em meio web: ". ($this -> dispoWeb ? "Sim" : "Não")."\n";
         $dados .= "Preço: ". $this -> getPreco()."\n";
-        $dados .= "Diretor: \n". $this ->getDiretor()."\n";
+        $dados .= "Diretor: \n". $this ->getDiretor()->getDadosDiretor()."\n";
         return $dados;
     }
 

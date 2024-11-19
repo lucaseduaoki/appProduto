@@ -13,6 +13,10 @@ class Diretor {
         $this->nacionalidade = $nacionalidade;
         $this->numPremiacoes = $numPremiacoes;
     }
+    public function __toString(): string {
+        return "Nome: $this->nome \n, Idade: $this->idade\n, Nacionalidade: $this->nacionalidade\n, Premiações: $this->numPremiacoes\n";
+    }
+
 
     public function getNome(): string {
         return $this->nome;

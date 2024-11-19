@@ -20,7 +20,7 @@ class Serie extends Produto implements IProduto{
         $dados .= "Gênero: ".$this-> getGenero()."\n";
         $dados .= "Adaptação de livro: ".($this -> adptLivro ? "Sim" : "Não")."\n";
         $dados .= "Está disponível em meio web: ". ($this -> dispoWeb ? "Sim" : "Não")."\n";
-        $dados .= "Diretor: \n". $this ->getDiretor()."\n";
+        $dados .= "Diretor: \n". $this ->getDiretor()->getDadosDiretor()."\n";
         $dados .= "Preço: ". $this -> getPreco()."\n";
         return $dados;
     }

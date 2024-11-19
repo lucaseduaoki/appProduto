@@ -4,7 +4,41 @@ require_once('modelo/Produto.php');
 require_once('modelo/Filme.php');
 require_once('modelo/Serie.php');
 
-$produtosCadastrados = array();
+
+$produtosCadastrados = [];
+
+function ListarProdutos(array $produtosCadastrados) {
+    echo "PRODUÇÕES CADASTRADAS\n";
+
+    $i = 1;
+    foreach($produtosCadastrados as $e) {
+        if($e instanceof Filme)
+            echo $i . "- " . $e->getDadosProduto();
+
+        else if($e instanceof Serie)
+            echo $i . "- " . $e->getDadosProduto();
+        $i++;
+    }
+}
+function listarFilmes(array $produtosCadastrados) {
+    echo "FILMES CADASTRADOS\n";
+     $i = 0;
+    foreach($produtosCadastrados as $e) {
+        $i++;
+        if($e instanceof Filme)
+        echo $i . "- " . $e->getDadosProduto();
+        
+    }
+}
+function listarSeries(array $produtosCadastrados) {
+    echo "SÉRIES CADASTRADAS\n";
+     $i = 0;
+    foreach($produtosCadastrados as $e) {
+        if($e instanceof Serie)
+        echo $i . "- " . $e->getDadosProduto();
+        $i++;
+    }
+}
 
 do {
   
@@ -15,6 +49,8 @@ do {
     echo "== 2. Cadastrar uma série    ==\n";
     echo "== 3. Listar séries          ==\n";
     echo "== 4. Listar filmes          ==\n";
+    echo "== 5. Listar Produções       ==\n";
+    echo "== 6. Excluir Produção       ==\n";
     echo "== 0. Sair                   ==\n";
     echo "===============================\n";
     echo "Escolha uma opção: ";
@@ -60,9 +96,9 @@ do {
                 }
                 $dispoWeb = readline("O filme esta disponível na web? (1 - Sim | 2 - Não ): ");
                 if ($dispoWeb == 1) {
-                    $f -> setAdptLivro(true);
+                    $f -> setDispoWeb(true);
                 } else{
-                    $f ->setAdptLivro(false);
+                    $f ->setDispoWeb(false);
                 }
                 $f->setPreco(readline("Digite o preço desse filme: "));
                 $nomeDiretor = readline("Digite o nome do diretor: ");
@@ -95,15 +131,18 @@ do {
                 $numPremiacoes = readline("Digite o número de premiações do diretor: ");
                 $diretor = new Diretor($nomeDiretor, $idadeDiretor, $nacionalidadeDiretor, $numPremiacoes);
                 $s->setDiretor($diretor);
-                array_push($produtosCadastrados, $s);  
+                array_push($produtosCadastrados, $s);    
             break;
         case 3:
-            echo ">>> Saindo do programa. Até logo! <<<\n";
+                listarSeries($produtosCadastrados);
             break;
         case 4:
-
+                listarFilmes($produtosCadastrados);
             break;
-        default:
+        case 5:
+                ListarProdutos($produtosCadastrados);
+            break;
+        default: 
             echo "*** Opção inválida! Por favor, tente novamente. ***\n";
             break;
     }
